@@ -6,7 +6,7 @@ const router = express.Router()
 const port = 3333
 
 // Rota para postar usúarios
-router.post('/usuario', async (req, res) => {
+router.post('/', async (req, res) => {
     const usersSchema = z.object({
         name: z.string(),
         email: z.string().email()
@@ -24,13 +24,13 @@ router.post('/usuario', async (req, res) => {
 
         res.status(201).json(users)
 
-    } catch (erro) {
+    } catch (error) {
         res.status(400).json({error: 'Dados inválidos no corpo da solicitação'})
     }
 })
 
 // Rota para obter todos os usúarios
-router.get('/usuario', async (req, res) => {
+router.get('/', async (req, res) => {
     try{
         const users = await prisma.users.findMany()
 
